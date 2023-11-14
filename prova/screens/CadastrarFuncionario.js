@@ -7,10 +7,11 @@ import { Button, Text, TextInput } from 'react-native-paper'
 import FuncionarioValidator from '../validator/FuncionarioValidator'
 import CadastrarFuncionarioStyle from '../styles/CadastrarFuncionarioStyle'
 import { useNavigation } from '@react-navigation/native'
+import { TextInputMask } from 'react-native-masked-text'
 
 export default function CadastrarFuncionario(props) {
     const navigation = useNavigation()
-    const {acao} = props.route.params
+    const { acao } = props.route.params
     const [funcionarios, setFuncionarios] = useState([])
 
     async function carregarFuncionario() {
@@ -44,7 +45,7 @@ export default function CadastrarFuncionario(props) {
     return (
         <View style={CadastrarFuncionarioStyle.container}>
             <Formik
-                initialValues={{ nome: "", sobreNome: "", cpf: "", salario: "", email: "", numero: ""  }}
+                initialValues={{ nome: "", sobreNome: "", cpf: "", salario: "", email: "", numero: "" }}
                 validationSchema={FuncionarioValidator}
                 onSubmit={values => salvarFuncionario(values)}
             >
@@ -85,6 +86,12 @@ export default function CadastrarFuncionario(props) {
                                 onBlur={handleBlur("cpf")}
                                 value={values.cpf}
                                 error={errors.cpf ? true : false}
+                                render={props =>
+                                    <TextInputMask 
+                                        {...props}
+                                        type='cpf'
+                                    />
+                                }
                             />
 
                             {touched.cpf && errors.cpf && (
@@ -98,6 +105,12 @@ export default function CadastrarFuncionario(props) {
                                 onBlur={handleBlur("email")}
                                 value={values.email}
                                 error={errors.email ? true : false}
+                                render={props =>
+                                    <TextInputMask 
+                                        {...props}
+                                        type=''
+                                    />
+                                }
                             />
 
                             {touched.email && errors.email && (
@@ -132,7 +145,7 @@ export default function CadastrarFuncionario(props) {
                         </View>
 
                         <View>
-                            <Button mode='outlined'  onPress={handleSubmit}>Salvar</Button>
+                            <Button mode='outlined' onPress={handleSubmit}>Salvar</Button>
                         </View>
 
                     </>
