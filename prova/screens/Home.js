@@ -31,12 +31,12 @@ export default function Home() {
 
         Toast.show({
             type: 'success',
-            text1: 'Professor excluído com sucesso!'
+            text1: 'excluído com sucesso!'
         });
     }
 
 
-    function novaListaCursos(cursosExcluir) {
+    function novaListaFuncionario(funcionarioExcluir) {
         Alert.alert("Confirmação?", "Você realmente deseja excluir este cliente?",
             [
                 {
@@ -44,7 +44,7 @@ export default function Home() {
                     onPress: () => console.log("Cancel Pressed"),
                     style: "cancel"
                 },
-                { text: "OK", onPress: () => excluirFuncionarios(cursosExcluir) }
+                { text: "OK", onPress: () => excluirFuncionarios(funcionarioExcluir) }
             ]
         );
     }
@@ -77,8 +77,8 @@ export default function Home() {
                 <Text variant='labelLarge'>Selecione o tipo de cadastro</Text>
 
                 <View style={{ flexDirection: 'row', width: '100%', gap: 10 }}>
-                    <Button mode='outlined' onPress={() => navigation.navigate('Funcionarios', { acao: carregarFuncionario })}>Cadastro Funcionarios</Button>
-                    <Button mode='outlined' onPress={() => navigation.navigate('cardapio')}>Cadastro cardapio</Button>
+                    <Button mode='outlined' onPress={() => navigation.navigate('Funcionarios', { acao: carregarFuncionario })}>Funcionarios</Button>
+                    <Button mode='outlined' onPress={() => navigation.navigate('cardapio')}>cardapio</Button>
                 </View>
             </View>
 

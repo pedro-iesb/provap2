@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import GerarIdÚnico from '../components/GerarIdÚnico'
 import { Field, Formik } from 'formik'
 import { Text, TextInput } from 'react-native-paper'
-import FuncionarioValidator from '../validator/FuncionarioValidator'
+import FuncionarioValidator from '../validator/Validator'
 import CadastrarFuncionarioStyle from '../styles/CadastrarFuncionarioStyle'
 import { Picker } from '@react-native-picker/picker'
 

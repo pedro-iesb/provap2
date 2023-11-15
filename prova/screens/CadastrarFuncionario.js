@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import GerarIdÚnico from '../components/GerarIdÚnico'
 import { Formik } from 'formik'
 import { Button, Text, TextInput } from 'react-native-paper'
-import FuncionarioValidator from '../validator/FuncionarioValidator'
+import {FuncionarioValidator} from '../validator/Validator'
 import CadastrarFuncionarioStyle from '../styles/CadastrarFuncionarioStyle'
 import { useNavigation } from '@react-navigation/native'
 import { TextInputMask } from 'react-native-masked-text'
@@ -79,6 +79,7 @@ export default function CadastrarFuncionario(props) {
                             {touched.sobreNome && errors.sobreNome && (
                                 <Text variant='labelLarge'>{errors.sobreNome}</Text>
                             )}
+
                             <TextInput
                                 mode="outlined"
                                 label='Cpf'
@@ -87,7 +88,7 @@ export default function CadastrarFuncionario(props) {
                                 value={values.cpf}
                                 error={errors.cpf ? true : false}
                                 render={props =>
-                                    <TextInputMask 
+                                    <TextInputMask
                                         {...props}
                                         type='cpf'
                                     />
@@ -105,12 +106,8 @@ export default function CadastrarFuncionario(props) {
                                 onBlur={handleBlur("email")}
                                 value={values.email}
                                 error={errors.email ? true : false}
-                                render={props =>
-                                    <TextInputMask 
-                                        {...props}
-                                        type=''
-                                    />
-                                }
+
+
                             />
 
                             {touched.email && errors.email && (
@@ -124,6 +121,12 @@ export default function CadastrarFuncionario(props) {
                                 onBlur={handleBlur("salario")}
                                 value={values.salario}
                                 error={errors.salario ? true : false}
+                                render={props =>
+                                    <TextInputMask
+                                        {...props}
+                                        type="money"
+                                    />
+                                }
                             />
 
                             {touched.salario && errors.salario && (
@@ -137,10 +140,39 @@ export default function CadastrarFuncionario(props) {
                                 onBlur={handleBlur("numero")}
                                 value={values.numero}
                                 error={errors.numero ? true : false}
+                                render={props =>
+                                    <TextInputMask
+                                        {...props}
+                                        type='cel-phone'
+                                    />
+                                }
                             />
 
                             {touched.numero && errors.numero && (
                                 <Text variant='labelLarge'>{errors.numero}</Text>
+                            )}
+                            <TextInput
+                                mode="outlined"
+                                label='Cep'
+                                keyboardType='numeric'
+                                onChangeText={handleChange("cep")}
+                                onBlur={handleBlur("cep")}
+                                value={values.cep}
+                                error={errors.cep ? true : false}
+                                render={props =>
+                                    <TextInputMask
+                                        {...props}
+                                        type={'custom'}
+                                        options={{
+
+                                            mask: '99999-999'
+                                        }}
+                                    />
+                                }
+                            />
+
+                            {touched.cep && errors.cep && (
+                                <Text variant='labelLarge'>{errors.cep}</Text>
                             )}
                         </View>
 
